@@ -1,0 +1,193 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+}
+body{
+    background-color: #fbfbfb;
+}
+.container{
+    max-width: 100%;
+    padding: 0px 40px;
+    margin: 0 auto;
+}
+nav{
+    padding: 15px 0px;
+}
+nav .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo-search{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+.logo{
+    width: 60px;
+}
+.logo-search form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #f1f1f1;
+    padding: 13px 15px;
+    border-radius: 10px;
+    width: 400px;
+}
+.logo-search button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #14143f;
+}
+.logo-search input{
+    width: 90%;
+    outline: none;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+}
+.nav-btns{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.nav-btns select{
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    outline: none;
+}
+.nav-btns button{
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: #14143f;
+    cursor: pointer;
+    font-weight: 500;
+}
+.home{
+    padding: 50px 0px;
+}
+.home-filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.home-filter button{
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.home-filter button:hover{
+    background-color: #14143f;
+    color: white;
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 40px;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: all .2s ease;
+    box-shadow: 0px 0px 10px #e7e5e5;
+}
+.card:hover{
+    transform: translateY(-10px);
+}
+.card img{
+    width: 200px;
+    height: 220px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.card-info{
+    display: flex;
+    flex-direction: column;
+    row-gap: 7px;
+    padding: 15px;
+}
+.sale-price{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sale-price span{
+    background-color: #f71f1f;
+    color: white;
+    padding: 3px 5px;
+    border-radius: 4px;
+}
+.card-btns{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-btns button{
+    background-color: #ffd200;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+footer{
+    background-color: #e7e5e5;
+    padding: 30px 0px;
+}
+footer .container{
+    display: flex;
+    justify-content: space-between;
+}
+.logo-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.links-div{
+    display: flex;
+    gap: 100px;
+}
+.links-div ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.links-div a{
+    text-decoration: none;
+    color: #14143f;
+}
+.s-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.socials{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 25px;
+}

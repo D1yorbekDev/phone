@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{%static 'style.css' %}">
+    <script defer src="{% static app.js %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="{% static 'imgs/logo.png' %}">
+    <title>Mobile shop</title>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo-search">
+                <a href="./index.html">
+                    <img class="logo" src="{% static 'imgs/logo.png' %}" alt="">
+                </a>
+                <form action="">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="nav-btns">
+                <button>
+                    <span>Uzb</span>
+                    <span>Rus</span>
+                    <span>Eng</span>
+                </button>
+                <button><i class="fa-regular fa-heart"></i></button>
+                <button><i class="fa-solid fa-cart-arrow-down"></i></button>
+                <button>
+                    <a href="{% url 'login' %}"><span>Sign in</span></a>
+                    <i class="fa-regular fa-user"></i>
+
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="home">
+        <div class="container">
+            <div class="home-filter">
+                <button class="filter-btn active" data-filter="all"></a>All</button>
+                <button class="filter-btn" data-filter="phone">Phones</button>
+                <button class="filter-btn" data-filter="electronic">Electronics</button>
+                <button class="filter-btn" data-filter="accessorie">Accessories</button>
+            </div>
+            <div class="cards" data-category="phone">
+
+                {% for product in products %}
+                <div class="card" data-category="{{ product.type }}">
+                    <i class="fa-regular fa-heart"></i>
+                    <img src="{{product.image.url}}" alt="product img">
+                    <div class="card-info">
+                        <p>{{product.name}}</p>
+                        <b clas="discounted-price">UZS {{product.discount_price}}</b>
+                        <div class="sale-price">
+                            <del>UZS {{product.price}}</del>
+                            {% if product.discount != 0 %}
+                            <span>{{product.discount}}%</span>
+                            {% endif %}
+                        </div>
+                        <div class="card-btns">
+                            <button>Add cart</button>
+                            <button>{{product.price}} x12</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="logo-div">
+                <a href="./index.html">
+                    <img class="logo" src="./imgs/logo.png" alt="">
+                </a>
+                <p>2024©. all rights reserved</p>
+            </div>
+            <div class="links-div">
+                <ul>
+                    <h4>Get support</h4>
+                    <li>
+                        <a href="">Help Center</a>
+                    </li>
+                    <li>
+                        <a href="">Live chat</a>
+                    </li>
+                    <li>
+                        <a href="">Check order status</a>
+                    </li>
+                </ul>
+                <ul>
+                    <h4>Payments and protections</h4>
+                    <li>
+                        <a href="">Safe and easy payments</a>
+                    </li>
+                    <li>
+                        <a href="">Money-back policy</a>
+                    </li>
+                    <li>
+                        <a href="">On-time shipping</a>
+                    </li>
+                </ul>
+                <div class="s-div">
+                    <h4>Social media</h4>
+                    <div class="socials">
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-tiktok"></i></a>
+                        <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.card');
+
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                cards.forEach(card => {
+                    const productCategory = card.getAttribute('data-category');
+
+                    // "all" tugmasi yoki mos kategoriya
+                    if (filter === 'all' || productCategory === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+        document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('input[type="text"]');
+        const cards = document.querySelectorAll('.card');
+
+        // Qidiruv funksiyasini qo'llash
+        searchInput.addEventListener('input', () => {
+            const searchText = searchInput.value.toLowerCase().trim(); // Kiritilgan matnni kichik harfga aylantirish va bo‘sh joylarni olib tashlash
+
+            cards.forEach(card => {
+                const productName = card.querySelector('.card-info p').textContent.toLowerCase(); // Mahsulot nomini olish
+                // Matn mos kelgan bo'lsa ko'rsatamiz, aks holda yashiramiz
+                if (productName.includes(searchText)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    </script>
+
+</body>
+
+</html>
